@@ -24,12 +24,13 @@ class TestDemoModule(unittest.TestCase):
         actual_result = shop.get_car_color()
 
         assert expected_result == actual_result, f"Expected: {expected_result}, Actual: {actual_result}"
-        # Verify that DemoModule used the expected method in its dependent class
+        # Verify that CarShop used get_color in CarColors in the get_car_color method:
         MockGetColor.assert_called()
 
     # Example of verifying behavior on another class acted upon by this class
     def test_fix_car(self):
         car = Car()
+        # This allows us to know what methods were called on the car class:
         car_spy = Mock(wraps=car)
         shop = CarShop()
 
@@ -43,7 +44,6 @@ class TestDemoModule(unittest.TestCase):
     def test_get_sell_price_broken_car(self):
         expected_result = 1
         car = Car()
-        shop = CarShop()
         shop = CarShop()
 
         actual_result = shop.get_car_sell_price(car)
